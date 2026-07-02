@@ -1,0 +1,7 @@
+Splash and Shine Car Wash - JS Implementation Notes
+
+1. Loop-rendered dynamic content: Washing packages array processed via forEach() to dynamically render service item cards in #services-container.
+2. Dynamically add & remove elements: Built an add-on appointment wishlist allowing users to add text items via a form and remove individual items using .remove().
+3. Form handling with validation feedback: Structured #booking-form to prevent default reloading, validate inputs, and write custom text feedback back to the DOM.
+4. Persistent state with localStorage: Enabled real-time caching of the booking form's name and email inputs, restoring them automatically upon page reload until a successful submit clears the draft.
+5. Click-to-reveal banner: Configured a click event listener on the main banner image to toggle the 'reveal' class and display eco-friendly details.
