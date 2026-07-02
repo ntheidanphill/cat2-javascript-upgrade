@@ -33,10 +33,10 @@ const washingPackages = [
 const servicesContainer = document.querySelector("#services-container");
 
 //  Loop through our data array to systematically construct and mount the elements.
-washingPackages.forEach(function(packageData) {
+washingPackages.forEach(function (packageData) {
     // Programmatically instantiate an enveloping card wrapper element
     const cardElement = document.createElement("div");
-    
+
     // Apply your baseline style classes
     cardElement.classList.add("service-item");
     if (packageData.isDeluxe) {
@@ -45,7 +45,7 @@ washingPackages.forEach(function(packageData) {
 
     // Build out the nested item content using template strings safely
     let featuresHTML = "";
-    packageData.features.forEach(function(featureText) {
+    packageData.features.forEach(function (featureText) {
         featuresHTML += `<li>${featureText}</li>`;
     });
 
@@ -71,7 +71,7 @@ const addonInput = document.querySelector("#addon-input");
 const addonList = document.querySelector("#addon-list");
 
 // Listen for the form submission
-addonForm.addEventListener("submit", function(event) {
+addonForm.addEventListener("submit", function (event) {
     // Prevent the page from reloading when the button is clicked
     event.preventDefault();
 
@@ -89,7 +89,7 @@ addonForm.addEventListener("submit", function(event) {
         deleteBtn.classList.add("delete-btn"); // Optional class for styling
 
         // Make the Remove button actually work
-        deleteBtn.addEventListener("click", function() {
+        deleteBtn.addEventListener("click", function () {
             li.remove(); // This removes the specific element from the DOM
         });
 
@@ -111,7 +111,7 @@ const emailInput = document.querySelector("#user-email");
 const feedbackDisplay = document.querySelector("#form-feedback");
 
 // Listen for the 'submit' event
-bookingForm.addEventListener("submit", function(event) {
+bookingForm.addEventListener("submit", function (event) {
     // Stop the browser from refreshing the page
     event.preventDefault();
 
@@ -133,4 +133,22 @@ bookingForm.addEventListener("submit", function(event) {
         nameInput.value = "";
         emailInput.value = "";
     }
+});
+
+//4. Persistent State with localStorage
+// On page load: Check if there's a saved draft. If yes, fill the inputs automatically
+if (localStorage.getItem("draftName")) {
+    nameInput.value = localStorage.getItem("draftName");
+}
+if (localStorage.getItem("draftEmail")) {
+    emailInput.value = localStorage.getItem("draftEmail");
+}
+
+//  As the user types: Save their text immediately to localStorage
+nameInput.addEventListener("input", function () {
+    localStorage.setItem("draftName", nameInput.value);
+});
+
+emailInput.addEventListener("input", function () {
+    localStorage.setItem("draftEmail", emailInput.value);
 });
