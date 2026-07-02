@@ -62,3 +62,42 @@ washingPackages.forEach(function(packageData) {
     // Mount the programmatically crafted card element onto the main DOM tree grid canvas
     servicesContainer.appendChild(cardElement);
 });
+
+// Dynamically add & remove elements (Wishlist-style)
+
+// Target the HTML elements we just created
+const addonForm = document.querySelector("#addon-form");
+const addonInput = document.querySelector("#addon-input");
+const addonList = document.querySelector("#addon-list");
+
+// Listen for the form submission
+addonForm.addEventListener("submit", function(event) {
+    // Prevent the page from reloading when the button is clicked
+    event.preventDefault();
+
+    const inputValue = addonInput.value.trim();
+
+    // Only proceed if the user actually typed something
+    if (inputValue !== "") {
+        // Create the new List Item (li)
+        const li = document.createElement("li");
+        li.textContent = inputValue + " "; // Add a space after the text
+
+        //Create the Delete Button
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Remove";
+        deleteBtn.classList.add("delete-btn"); // Optional class for styling
+
+        // Make the Remove button actually work
+        deleteBtn.addEventListener("click", function() {
+            li.remove(); // This removes the specific element from the DOM
+        });
+
+        // Assemble the pieces and put them on the screen
+        li.appendChild(deleteBtn); // Put the button inside the li
+        addonList.appendChild(li); // Put the li inside the ul
+
+        // 7. Clear the input box for the next item
+        addonInput.value = "";
+    }
+});
