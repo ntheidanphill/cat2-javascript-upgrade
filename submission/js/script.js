@@ -152,3 +152,16 @@ nameInput.addEventListener("input", function () {
 emailInput.addEventListener("input", function () {
     localStorage.setItem("draftEmail", emailInput.value);
 });
+
+
+// 5. Click-to-reveal on your banner
+
+// Target the banner image and the newly added caption text
+const bannerImage = document.querySelector(".main-banner-img");
+const bannerCaption = document.getElementById("banner-caption");
+
+// Add a click event listener to the image
+bannerImage.addEventListener("click", function () {
+    // Toggle the 'reveal' class on the caption element
+    bannerCaption.classList.toggle("reveal");
+});

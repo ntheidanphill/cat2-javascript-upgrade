@@ -263,3 +263,29 @@ footer h3 { color: #fff; border: none; margin-top: 0; }
         height: 250px;   
     }
 }
+
+/* Initially hide the banner caption */
+.banner-caption-hidden {
+    display: none;
+    text-align: center;
+    background-color: #e0f2fe; /* Light blue background */
+    color: #0369a1;            /* Dark blue text */
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 8px;
+    font-weight: bold;
+    max-width: 80%;
+    border: 1px solid #bae6fd;
+}
+
+/* Class that gets toggled on by JavaScript to show the text */
+.banner-caption-hidden.reveal {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Smooth fade-in effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
