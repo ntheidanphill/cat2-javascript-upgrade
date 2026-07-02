@@ -1,4 +1,4 @@
-// The loop-rendered dynamic content
+// 1. The loop-rendered dynamic content
 
 //Declare the data array containing objects representing car wash options.
 // Each object contains a mandatory 'name' property to pass the grading script.
@@ -29,10 +29,10 @@ const washingPackages = [
     }
 ];
 
-// 2. Query the DOM to target our empty destination grid canvas element.
+//  Query the DOM to target our empty destination grid canvas element.
 const servicesContainer = document.querySelector("#services-container");
 
-// 3. Loop through our data array to systematically construct and mount the elements.
+//  Loop through our data array to systematically construct and mount the elements.
 washingPackages.forEach(function(packageData) {
     // Programmatically instantiate an enveloping card wrapper element
     const cardElement = document.createElement("div");
@@ -63,7 +63,7 @@ washingPackages.forEach(function(packageData) {
     servicesContainer.appendChild(cardElement);
 });
 
-// Dynamically add & remove elements (Wishlist-style)
+// 2. Dynamically add & remove elements (Wishlist-style)
 
 // Target the HTML elements we just created
 const addonForm = document.querySelector("#addon-form");
@@ -99,5 +99,38 @@ addonForm.addEventListener("submit", function(event) {
 
         // 7. Clear the input box for the next item
         addonInput.value = "";
+    }
+});
+
+// 3. Form handling with validation feedback
+
+//  Target the form and its elements
+const bookingForm = document.querySelector("#booking-form");
+const nameInput = document.querySelector("#user-name");
+const emailInput = document.querySelector("#user-email");
+const feedbackDisplay = document.querySelector("#form-feedback");
+
+// Listen for the 'submit' event
+bookingForm.addEventListener("submit", function(event) {
+    // Stop the browser from refreshing the page
+    event.preventDefault();
+
+    // Read what the user typed (and trim any accidental extra spaces)
+    const userName = nameInput.value.trim();
+    const userEmail = emailInput.value.trim();
+
+    // 3. Validation Logic
+    if (userName === "" || userEmail === "") {
+        // ERROR: One or both fields are empty
+        feedbackDisplay.textContent = "Please fill out both your name and email.";
+        feedbackDisplay.style.color = "red"; // Direct visual feedback
+    } else {
+        // SUCCESS: Both fields have text
+        feedbackDisplay.textContent = `Thanks for your feedback ${userName}! We'll contact you at ${userEmail} to confirm your booking.`;
+        feedbackDisplay.style.color = "green";
+
+        // Clear the form fields after a successful submission
+        nameInput.value = "";
+        emailInput.value = "";
     }
 });
